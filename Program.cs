@@ -10,10 +10,11 @@ namespace CyberSecurityBot
     {
         static void Main(string[] args)
         {
-            AudioPlayer.PlayGreeting();
-            UserInterface.DisplayAsciiArt();
+          AudioPlayer.PlayGreeting();
+        UserInterface.DisplayAsciiArt();
 
-            string userName = UserInterface.GetUserName();
+        string userName = UserInterface.GetUserName();
+        Chatbot.StartChatbot(userName);
         }
     }
 }
