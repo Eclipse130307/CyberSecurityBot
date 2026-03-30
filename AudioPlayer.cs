@@ -14,16 +14,17 @@ namespace CyberSecurityBot
         {
             try
             {
-                string path = "greeting.wav";
+                // Play the embedded WAV from project resources
+                var stream = Properties.Resources.Welcome_Greeting;
 
-                if (File.Exists(path))
+                if (stream != null)
                 {
-                    SoundPlayer player = new SoundPlayer(path);
+                    SoundPlayer player = new SoundPlayer(stream);
                     player.PlaySync();
                 }
                 else
                 {
-                    Console.WriteLine("Audio file not found.");
+                    Console.WriteLine("Audio resource not found. Ensure the WAV is added to project resources and rebuild the project.");
                 }
             }
             catch (Exception ex)
