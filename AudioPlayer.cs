@@ -24,7 +24,7 @@ namespace CyberSecurityBot
                 }
                 else
                 {
-                    Console.WriteLine("Audio resource not found. Ensure the WAV is added to project resources and rebuild the project.");
+                    Console.WriteLine("Audio resource not found");
                 }
             }
             catch (Exception ex)
