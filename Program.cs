@@ -10,7 +10,7 @@ namespace CyberSecurityBot
     {
         static void Main(string[] args)
         {
-          AudioPlayer.PlayGreeting();
+        AudioPlayer.PlayGreeting();
         UserInterface.DisplayAsciiArt();
 
         string userName = UserInterface.GetUserName();
