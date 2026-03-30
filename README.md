@@ -2,7 +2,8 @@ Eclipse1303's CyberSecurityBot
 
 A helpful chatbot that is used to answer cyber security based questions. Made using C#.
 
-(Add youtube link)
+YouTube Link : https://youtu.be/AoG45Jjr48E
+How to use chatbot: https://youtu.be/hCMRPZWdxSA
 
 Requirement/s to setup the system : 1. Install Microsoft Visual Studio
 Setup Instructions : 1. Download or clone the repository
