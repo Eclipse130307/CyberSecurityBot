@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CyberSecurityChatbot
 {
@@ -10,10 +9,13 @@ namespace CyberSecurityChatbot
         [STAThread]
         static void Main()
         {
-            // Initializes WinForms configuration
-            ApplicationConfiguration.Initialize();
+            // Enables visual styles for WinForms
+            Application.EnableVisualStyles();
 
-            // Starts the GUI form
+            // Sets compatible text rendering
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Starts the main GUI form
             Application.Run(new MainForm());
         }
     }
