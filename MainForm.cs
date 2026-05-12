@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace CyberSecurityChatbotGUI
+namespace CyberSecurityChatbot
 {
     public partial class MainForm : Form
     {

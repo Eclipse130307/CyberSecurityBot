@@ -1,74 +1,150 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using CyberSecurityChatbot;
 
-namespace CyberSecurityBot
+namespace CyberSecurityChatbot
 {
-    public static class Chatbot
+    // Delegate used for chatbot responses
+    public delegate string ResponseDelegate(string input);
+
+    public class Chatbot
     {
-        public static void StartChatbot(string userName)
+        // Helper objects
+        private ResponseManager responseManager = new ResponseManager();
+        private MemoryManager memory = new MemoryManager();
+        private ToneAnalyzer ToneAnalyzer = new ToneAnalyzer();
+
+        // Main response method
+        public string GetResponse(string input)
         {
-            while (true)
+            // Creates delegate object
+            ResponseDelegate responseHandler = ProcessInput;
+
+            // Calls delegate
+            return responseHandler(input);
+        }
+
+        // Processes user input
+        private string ProcessInput(string input)
+        {
+            // Handles empty messages
+            if (string.IsNullOrWhiteSpace(input))
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("\nYou: ");
-                string input = Console.ReadLine().ToLower();
+                return "Please enter a message.";
+            }
 
-                Console.ForegroundColor = ConsoleColor.Green;
+            // Converts input to lowercase
+            input = input.ToLower();
 
-                if (input.Contains("how are you"))
+            // Detects emotion
+            string sentiment = sentimentAnalyzer.DetectSentiment(input);
+
+            // Stores user name
+            if (input.Contains("my name is"))
+            {
+                memory.UserName = input.Replace("my name is", "").Trim();
+
+                return "Nice to meet you, " + memory.UserName + ".";
+            }
+
+            // Stores favourite topic
+            if (input.Contains("interested in"))
+            {
+                memory.FavouriteTopic = input.Replace("interested in", "").Trim();
+
+                return "I will remember that you are interested in " + memory.FavouriteTopic + ".";
+            }
+
+            // Memory recall
+            if (input.Contains("remember"))
+            {
+                return "Your favourite topic is " + memory.FavouriteTopic + ".";
+            }
+
+            // Continues conversation
+            if (input.Contains("tell me more") || input.Contains("another tip"))
+            {
+                if (memory.LastTopic != "")
                 {
-                    Console.WriteLine($"Bot: I'm doing well, {userName}!");
-                }
-                else if (input.Contains("purpose"))
-                {
-                    Console.WriteLine("Bot: My purpose is to help you understand basic cybersecurity practices so you can protect your personal information, devices, and online accounts from threats.");
-                }
-                else if (input.Contains("ask"))
-                {
-                    Console.WriteLine("Bot: Ask about phishing, passwords, and safe browsing.");
-                }
-                else if (input.Contains("password"))
-                {
-                    Console.WriteLine("Bot: A strong password should be at least 12 characters long and include a mix of uppercase letters, lowercase letters, numbers, and symbols. Avoid using personal information, and never reuse the same password across multiple accounts.");
-                }
-                else if (input.Contains("phishing"))
-                {
-                    Console.WriteLine("Bot: Phishing is a type of cyber attack where attackers try to trick you into revealing sensitive information like passwords or banking details. Be cautious of emails or messages that create urgency, contain suspicious links, or ask for personal information.");
-                }
-                else if (input.Contains("browsing"))
-                {
-                    Console.WriteLine("Bot: Safe browsing means only visiting secure websites that use HTTPS (Looking for HTTPS in the website URL), avoiding clicking on unknown links, and keeping your browser updated. You should also avoid downloading files from untrusted sources.");
-                }
-                else if (input.Contains("malware"))
-                {
-                    Console.WriteLine("Bot: Malware is harmful software designed to damage or gain unauthorized access to your system. You can protect yourself by installing antivirus software, avoiding suspicious downloads, and keeping your system updated.");
-                }
-                else if (input.Contains("vpn"))
-                {
-                    Console.WriteLine("Bot: A VPN (Virtual Private Network) encrypts your internet connection and helps protect your privacy, especially when using public Wi-Fi. It makes it harder for attackers to intercept your data.");
-                }
-                else if (input.Contains("2fa") || input.Contains("two factor"))
-                {
-                    Console.WriteLine("Bot: Two-factor authentication (2FA) adds an extra layer of security by requiring a second verification step, such as a code sent to your phone. It greatly reduces the risk of unauthorized access.");
-                }
-                else if (input == "exit")
-                {
-                    Console.WriteLine("Bot: Goodbye!");
-                    break;
-                }
-                else if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("Bot: Please enter something.");
-                }
-                else
-                {
-                    Console.WriteLine("Bot: I didn’t understand that.");
+                    return responseManager.GetRandomResponse(memory.LastTopic);
                 }
             }
+
+            // Password topic
+            if (input.Contains("password"))
+            {
+                memory.LastTopic = "password";
+
+                return AddSentiment(sentiment)
+                    + responseManager.GetRandomResponse("password");
+            }
+
+            // Phishing topic
+            if (input.Contains("phishing"))
+            {
+                memory.LastTopic = "phishing";
+
+                return AddSentiment(sentiment)
+                    + responseManager.GetRandomResponse("phishing");
+            }
+
+            // Privacy topic
+            if (input.Contains("privacy"))
+            {
+                memory.LastTopic = "privacy";
+
+                return AddSentiment(sentiment)
+                    + responseManager.GetRandomResponse("privacy");
+            }
+
+            // Scam topic
+            if (input.Contains("scam"))
+            {
+                memory.LastTopic = "scam";
+
+                return AddSentiment(sentiment)
+                    + responseManager.GetRandomResponse("scam");
+            }
+
+            // Safe browsing topic
+            if (input.Contains("browsing"))
+            {
+                return "Use HTTPS websites and avoid suspicious downloads.";
+            }
+
+            // Greeting
+            if (input.Contains("hello") || input.Contains("hi"))
+            {
+                return "Hello. How can I help you today?";
+            }
+
+            // Purpose
+            if (input.Contains("purpose"))
+            {
+                return "My purpose is to educate users about cybersecurity.";
+            }
+
+            // Unknown input
+            return "I'm not sure I understand. Can you try rephrasing?";
+        }
+
+        // Adds emotion-aware responses
+        private string AddSentiment(string sentiment)
+        {
+            if (sentiment == "worried")
+            {
+                return "It is understandable to feel worried. ";
+            }
+
+            if (sentiment == "frustrated")
+            {
+                return "I understand this can feel frustrating. ";
+            }
+
+            if (sentiment == "curious")
+            {
+                return "That is a great topic to learn about. ";
+            }
+
+            return "";
         }
     }
 }
