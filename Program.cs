@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
-namespace CyberSecurityBot
+namespace CyberSecurityChatbotGUI
 {
-    internal class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        // Main entry point of the application
+        [STAThread]
+        static void Main()
         {
-        AudioPlayer.PlayGreeting();
-        UserInterface.DisplayAsciiArt();
+            // Initializes WinForms configuration
+            ApplicationConfiguration.Initialize();
 
-        string userName = UserInterface.GetUserName();
-        Chatbot.StartChatbot(userName);
+            // Starts the GUI form
+            Application.Run(new MainForm());
         }
     }
 }
