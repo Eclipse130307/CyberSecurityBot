@@ -1,39 +1,90 @@
-﻿namespace CyberSecurityChatbotGUI
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace CyberSecurityChatbotGUI
 {
     partial class MainForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        // Stores form components
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        // Chat display area
+        private RichTextBox rtbChat;
+
+        // User input textbox
+        private TextBox txtUserInput;
+
+        // Send button
+        private Button btnSend;
+
+        // Title label
+        private Label lblTitle;
+
+        // Cleans up resources
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
+        // Creates GUI controls and positions them
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
-        }
+            rtbChat = new RichTextBox();
+            txtUserInput = new TextBox();
+            btnSend = new Button();
+            lblTitle = new Label();
 
-        #endregion
+            SuspendLayout();
+
+            // Title label settings
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 20);
+            lblTitle.Text = "Cybersecurity Awareness Chatbot";
+
+            // Chat area settings
+            rtbChat.BackColor = Color.White;
+            rtbChat.Font = new Font("Segoe UI", 10F);
+            rtbChat.Location = new Point(20, 70);
+            rtbChat.ReadOnly = true;
+            rtbChat.Size = new Size(640, 300);
+
+            // Input textbox settings
+            txtUserInput.Font = new Font("Segoe UI", 10F);
+            txtUserInput.Location = new Point(20, 390);
+            txtUserInput.Size = new Size(520, 25);
+
+            // Send button settings
+            btnSend.BackColor = Color.LightSeaGreen;
+            btnSend.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSend.Location = new Point(560, 388);
+            btnSend.Size = new Size(100, 30);
+            btnSend.Text = "Send";
+
+            // Connects button click event
+            btnSend.Click += btnSend_Click;
+
+            // Main form settings
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.DarkSlateGray;
+            ClientSize = new Size(684, 441);
+            Text = "Cybersecurity Awareness Chatbot";
+
+            // Adds controls to form
+            Controls.Add(lblTitle);
+            Controls.Add(rtbChat);
+            Controls.Add(txtUserInput);
+            Controls.Add(btnSend);
+
+            ResumeLayout(false);
+            PerformLayout();
+        }
     }
 }
