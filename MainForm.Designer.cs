@@ -5,22 +5,20 @@ namespace CyberSecurityChatbot
 {
     partial class MainForm
     {
-        // Stores form components
         private System.ComponentModel.IContainer components = null;
 
-        // Chat display area
-        private RichTextBox rtbChat;
+        private Panel pnlHeader;
+        private Panel pnlChatContainer;
+        private Panel pnlInput;
+        private Panel pnlInputBox;
 
-        // User input textbox
+        private Label lblTitle;
+        private Label lblStatus;
+
+        private FlowLayoutPanel flpChat;
         private TextBox txtUserInput;
-
-        // Send button
         private Button btnSend;
 
-        // Title label
-        private Label lblTitle;
-
-        // Cleans up resources
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -31,60 +29,104 @@ namespace CyberSecurityChatbot
             base.Dispose(disposing);
         }
 
-        // Creates GUI controls and positions them
         private void InitializeComponent()
         {
-            rtbChat = new RichTextBox();
+            pnlHeader = new Panel();
+            pnlChatContainer = new Panel();
+            pnlInput = new Panel();
+            pnlInputBox = new Panel();
+
+            lblTitle = new Label();
+            lblStatus = new Label();
+
+            flpChat = new FlowLayoutPanel();
             txtUserInput = new TextBox();
             btnSend = new Button();
-            lblTitle = new Label();
 
             SuspendLayout();
 
-            // Title label settings
+            Text = "Cybersecurity Awareness Chatbot";
+            WindowState = FormWindowState.Maximized;
+            BackColor = Color.FromArgb(10, 10, 15);
+            Font = new Font("Segoe UI", 10F);
+
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 120;
+            pnlHeader.BackColor = Color.FromArgb(20, 10, 35);
+
+            lblTitle.Text = "CYBER SECURITY CHATBOT";
+            lblTitle.ForeColor = Color.FromArgb(0, 255, 255);
+            lblTitle.Font = new Font("Bahnschrift SemiBold", 24F, FontStyle.Bold);
             lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(20, 20);
-            lblTitle.Text = "Cybersecurity Awareness Chatbot";
 
-            // Chat area settings
-            rtbChat.BackColor = Color.White;
-            rtbChat.Font = new Font("Segoe UI", 10F);
-            rtbChat.Location = new Point(20, 70);
-            rtbChat.ReadOnly = true;
-            rtbChat.Size = new Size(640, 300);
+            // Increase the Y value to move the title lower
+            lblTitle.Location = new Point(40, 45);
 
-            // Input textbox settings
-            txtUserInput.Font = new Font("Segoe UI", 10F);
-            txtUserInput.Location = new Point(20, 390);
-            txtUserInput.Size = new Size(520, 25);
+            //Only way I could find to move the status label lower without affecting the title was to add extra padding to the header and then move the status down with a location change
+            lblStatus.Text = "";
+            lblStatus.ForeColor = Color.FromArgb(255, 120, 220);
+            lblStatus.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblStatus.AutoSize = true;
 
-            // Send button settings
-            btnSend.BackColor = Color.LightSeaGreen;
-            btnSend.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnSend.Location = new Point(560, 388);
-            btnSend.Size = new Size(100, 30);
-            btnSend.Text = "Send";
+            // Increase the Y value to move the status lower
+            lblStatus.Location = new Point(45, 85);
 
-            // Connects button click event
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(lblStatus);
+
+            pnlChatContainer.Dock = DockStyle.Fill;
+            pnlChatContainer.Padding = new Padding(40, 30, 40, 30);
+            pnlChatContainer.BackColor = Color.FromArgb(10, 10, 15);
+
+            flpChat.Dock = DockStyle.Fill;
+            flpChat.BackColor = Color.FromArgb(18, 18, 28);
+            flpChat.FlowDirection = FlowDirection.TopDown;
+            flpChat.WrapContents = false;
+            flpChat.AutoScroll = true;
+            flpChat.Padding = new Padding(25);
+
+            pnlChatContainer.Controls.Add(flpChat);
+
+            pnlInput.Dock = DockStyle.Bottom;
+            pnlInput.Height = 95;
+            pnlInput.BackColor = Color.FromArgb(10, 10, 15);
+            pnlInput.Padding = new Padding(40, 15, 40, 15);
+
+            pnlInputBox.Dock = DockStyle.Fill;
+            pnlInputBox.BackColor = Color.FromArgb(28, 20, 40);
+            pnlInputBox.Padding = new Padding(20, 15, 20, 15);
+
+            btnSend.Dock = DockStyle.Right;
+            btnSend.Width = 80;
+            btnSend.Text = "➤";
+            btnSend.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btnSend.BackColor = Color.FromArgb(210, 80, 170);
+            btnSend.ForeColor = Color.White;
+            btnSend.FlatStyle = FlatStyle.Flat;
+            btnSend.FlatAppearance.BorderSize = 0;
+            btnSend.Cursor = Cursors.Hand;
             btnSend.Click += btnSend_Click;
 
-            // Main form settings
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkSlateGray;
-            ClientSize = new Size(684, 441);
-            Text = "Cybersecurity Awareness Chatbot";
+            txtUserInput.Dock = DockStyle.Fill;
+            txtUserInput.BorderStyle = BorderStyle.None;
+            txtUserInput.BackColor = Color.FromArgb(28, 20, 40);
+            txtUserInput.ForeColor = Color.White;
+            txtUserInput.Font = new Font("Segoe UI", 13F);
 
-            // Adds controls to form
-            Controls.Add(lblTitle);
-            Controls.Add(rtbChat);
-            Controls.Add(txtUserInput);
-            Controls.Add(btnSend);
+            txtUserInput.KeyDown += txtUserInput_KeyDown;
+            txtUserInput.Enter += RemovePlaceholder;
+            txtUserInput.Leave += AddPlaceholder;
+
+            pnlInputBox.Controls.Add(btnSend);
+            pnlInputBox.Controls.Add(txtUserInput);
+
+            pnlInput.Controls.Add(pnlInputBox);
+
+            Controls.Add(pnlChatContainer);
+            Controls.Add(pnlInput);
+            Controls.Add(pnlHeader);
 
             ResumeLayout(false);
-            PerformLayout();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace CyberSecurityChatbot
             input = input.ToLower();
 
             // Detects emotion
-            string sentiment = sentimentAnalyzer.DetectSentiment(input);
+            string sentiment = ToneAnalyzer.DetectTone(input);
 
             // Stores user name
             if (input.Contains("my name is"))
