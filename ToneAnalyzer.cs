@@ -1,4 +1,4 @@
-﻿namespace CyberSecurityChatbotGUI
+﻿namespace CyberSecurityChatbot
 {
     public class ToneAnalyzer
     {
