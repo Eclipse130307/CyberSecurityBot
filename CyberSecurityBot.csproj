@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AudioPlayer.cs" />
     <Compile Include="Chatbot.cs" />
+    <Compile Include="MemoryManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace CyberSecurityChatbotGUI
+namespace CyberSecurityChatbot
 {
     internal static class Program
     {

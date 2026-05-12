@@ -3,7 +3,7 @@ using System.IO;
 using System.Media;
 using System.Windows.Forms;
 
-namespace CyberSecurityChatbotGUI
+namespace CyberSecurityChatbot
 {
     public static class AudioPlayer
     {
