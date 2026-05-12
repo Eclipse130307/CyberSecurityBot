@@ -1,35 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace CyberSecurityBot
+namespace CyberSecurityChatbotGUI
 {
     public static class AudioPlayer
     {
+        // Plays greeting audio
         public static void PlayGreeting()
         {
             try
             {
-                // Play the embedded WAV from project resources
-                var stream = Properties.Resources.Welcome_Greeting;
+                // Path to WAV file
+                string path = "greeting.wav";
 
-                if (stream != null)
+                // Checks if file exists
+                if (File.Exists(path))
                 {
-                    SoundPlayer player = new SoundPlayer(stream);
+                    // Creates sound player
+                    SoundPlayer player = new SoundPlayer(path);
+
+                    // Plays audio
                     player.PlaySync();
-                }
-                else
-                {
-                    Console.WriteLine("Audio resource not found");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                // Displays audio error
+                MessageBox.Show("Audio error: " + ex.Message);
             }
         }
     }
