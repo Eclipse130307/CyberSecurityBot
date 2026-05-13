@@ -113,10 +113,6 @@ namespace CyberSecurityChatbot
             txtUserInput.ForeColor = Color.White;
             txtUserInput.Font = new Font("Segoe UI", 13F);
 
-            txtUserInput.KeyDown += txtUserInput_KeyDown;
-            txtUserInput.Enter += RemovePlaceholder;
-            txtUserInput.Leave += AddPlaceholder;
-
             pnlInputBox.Controls.Add(btnSend);
             pnlInputBox.Controls.Add(txtUserInput);
 

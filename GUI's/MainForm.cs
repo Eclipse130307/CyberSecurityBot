@@ -13,9 +13,6 @@ namespace CyberSecurityChatbot
         // Stores logged in username
         private string username;
 
-        // Placeholder text
-        private string placeholderText = "Type your message...";
-
         // Tracks whether placeholder is currently active
         private bool isPlaceholderActive = true;
 
@@ -27,9 +24,6 @@ namespace CyberSecurityChatbot
 
             // Loads GUI controls
             InitializeComponent();
-
-            // Adds placeholder text
-            AddPlaceholder(null, null);
 
             // Displays welcome messages after form loads
             Shown += MainForm_Shown;
@@ -72,9 +66,6 @@ namespace CyberSecurityChatbot
             // Clears textbox
             txtUserInput.Text = "";
 
-            // Restores placeholder
-            AddPlaceholder(null, null);
-
             // Returns cursor
             txtUserInput.Focus();
         }
@@ -99,17 +90,6 @@ namespace CyberSecurityChatbot
                 txtUserInput.Text = "";
                 txtUserInput.ForeColor = Color.White;
                 isPlaceholderActive = false;
-            }
-        }
-
-        // Adds placeholder text
-        private void AddPlaceholder(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtUserInput.Text))
-            {
-                txtUserInput.Text = placeholderText;
-                txtUserInput.ForeColor = Color.FromArgb(170, 160, 190);
-                isPlaceholderActive = true;
             }
         }
 
