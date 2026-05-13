@@ -50,12 +50,6 @@
   <ItemGroup>
     <Compile Include="AudioPlayer.cs" />
     <Compile Include="Chatbot.cs" />
-    <Compile Include="WelcomeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WelcomeForm.Designer.cs">
-      <DependentUpon>WelcomeForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +80,12 @@
     </Compile>
     <Compile Include="ToneAnalyzer.cs" />
     <Compile Include="UserInterface.cs" />
+    <Compile Include="WelcomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WelcomeForm.Designer.cs">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

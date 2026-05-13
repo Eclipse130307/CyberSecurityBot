@@ -1,39 +1,92 @@
-﻿namespace CyberSecurityBot
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace CyberSecurityChatbot
 {
-    partial class Form2
+    // Designer section of WelcomeForm
+    partial class WelcomeForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        // Container for controls
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        // Labels
+        private Label lblWelcome;
+        private Label lblMessage;
+
+        // Button
+        private Button btnContinue;
+
+        // Cleans up resources
         protected override void Dispose(bool disposing)
         {
+            // Dispose components
             if (disposing && (components != null))
             {
                 components.Dispose();
             }
+
+            // Base dispose
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
+        // Creates GUI controls
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form2";
-        }
+            // Initializes component container
+            components = new System.ComponentModel.Container();
 
-        #endregion
+            // Creates controls
+            lblWelcome = new Label();
+            lblMessage = new Label();
+            btnContinue = new Button();
+
+            // Suspends layout while building UI
+            SuspendLayout();
+
+            // Form settings
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(900, 600);
+            Text = "Welcome";
+            WindowState = FormWindowState.Maximized;
+            BackColor = Color.FromArgb(10, 10, 15);
+
+            // Welcome title
+            lblWelcome.Text = "WELCOME";
+            lblWelcome.ForeColor = Color.FromArgb(0, 255, 255);
+            lblWelcome.Font = new Font("Bahnschrift SemiBold", 30F, FontStyle.Bold);
+            lblWelcome.AutoSize = true;
+            lblWelcome.Location = new Point(80, 130);
+
+            // Welcome message
+            lblMessage.Text =
+                "Welcome to the Cybersecurity Awareness Chatbot.\n\n" +
+                "This chatbot helps you learn about online safety,\n" +
+                "passwords, phishing, scams, privacy, and safe browsing.";
+
+            lblMessage.ForeColor = Color.White;
+            lblMessage.Font = new Font("Segoe UI", 15F);
+            lblMessage.AutoSize = true;
+            lblMessage.Location = new Point(85, 225);
+
+            // Continue button
+            btnContinue.Text = "Continue to Chatbot";
+            btnContinue.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            btnContinue.BackColor = Color.FromArgb(210, 80, 170);
+            btnContinue.ForeColor = Color.White;
+            btnContinue.FlatStyle = FlatStyle.Flat;
+            btnContinue.FlatAppearance.BorderSize = 0;
+            btnContinue.Location = new Point(90, 410);
+            btnContinue.Size = new Size(420, 50);
+            btnContinue.Click += btnContinue_Click;
+
+            // Adds controls to form
+            Controls.Add(lblWelcome);
+            Controls.Add(lblMessage);
+            Controls.Add(btnContinue);
+
+            // Resumes layout
+            ResumeLayout(false);
+            PerformLayout();
+        }
     }
 }
