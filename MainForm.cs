@@ -22,9 +22,6 @@ namespace CyberSecurityChatbot
 
             InitializeComponent();
 
-            // Plays greeting sound
-            AudioPlayer.PlayGreeting();
-
             // Adds placeholder text
             AddPlaceholder(null, null);
 

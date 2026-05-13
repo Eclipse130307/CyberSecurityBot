@@ -18,8 +18,11 @@ namespace CyberSecurityChatbot
             // Loads designer controls
             InitializeComponent();
 
+            // Plays welcome audio when welcome screen opens
+            AudioPlayer.PlayGreeting();
+
             // Displays personalised welcome message
-            lblWelcome.Text = "WELCOME, " + username.ToUpper();
+            lblWelcome.Text = "HELLO! " + username.ToUpper();
         }
 
         // Runs when Continue button is clicked
@@ -31,6 +34,11 @@ namespace CyberSecurityChatbot
 
             // Hides welcome screen
             Hide();
+        }
+
+        private void WelcomeForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -58,7 +58,8 @@ namespace CyberSecurityChatbot
             SuspendLayout();
 
             // Form settings
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode =
+                AutoScaleMode.Font;
 
             ClientSize =
                 new Size(900, 600);
@@ -71,7 +72,10 @@ namespace CyberSecurityChatbot
             BackColor =
                 Color.FromArgb(10, 10, 15);
 
-            // Main title
+            // Center position
+            int centerX = 560; // Adjusted for form size and control widths
+
+            // REGISTER title
             lblTitle.Text = "REGISTER";
 
             lblTitle.ForeColor =
@@ -85,8 +89,9 @@ namespace CyberSecurityChatbot
 
             lblTitle.AutoSize = true;
 
+            // Centered title
             lblTitle.Location =
-                new Point(80, 100);
+                new Point(centerX, 120);
 
             // Username label
             lblUsername.Text = "Username";
@@ -103,7 +108,7 @@ namespace CyberSecurityChatbot
             lblUsername.AutoSize = true;
 
             lblUsername.Location =
-                new Point(85, 200);
+                new Point(centerX, 240);
 
             // Username textbox
             txtUsername.Font =
@@ -121,7 +126,7 @@ namespace CyberSecurityChatbot
                 BorderStyle.FixedSingle;
 
             txtUsername.Location =
-                new Point(90, 235);
+                new Point(centerX, 275);
 
             txtUsername.Size =
                 new Size(420, 35);
@@ -141,7 +146,7 @@ namespace CyberSecurityChatbot
             lblPassword.AutoSize = true;
 
             lblPassword.Location =
-                new Point(85, 295);
+                new Point(centerX, 345);
 
             // Password textbox
             txtPassword.Font =
@@ -158,11 +163,10 @@ namespace CyberSecurityChatbot
             txtPassword.BorderStyle =
                 BorderStyle.FixedSingle;
 
-            // Hides password text
             txtPassword.PasswordChar = '*';
 
             txtPassword.Location =
-                new Point(90, 330);
+                new Point(centerX, 380);
 
             txtPassword.Size =
                 new Size(420, 35);
@@ -188,16 +192,17 @@ namespace CyberSecurityChatbot
             btnRegister.FlatAppearance.BorderSize = 0;
 
             btnRegister.Location =
-                new Point(90, 400);
+                new Point(centerX, 470);
 
             btnRegister.Size =
-                new Size(420, 45);
+                new Size(420, 50);
 
-            // Click event
+            // Register click event
             btnRegister.Click += btnRegister_Click;
 
             // Back button
-            btnBack.Text = "Back to Login";
+            btnBack.Text =
+                "Back to Login";
 
             btnBack.Font =
                 new Font(
@@ -217,12 +222,12 @@ namespace CyberSecurityChatbot
             btnBack.FlatAppearance.BorderSize = 0;
 
             btnBack.Location =
-                new Point(90, 465);
+                new Point(centerX, 545);
 
             btnBack.Size =
-                new Size(420, 40);
+                new Size(420, 45);
 
-            // Click event
+            // Back button click event
             btnBack.Click += btnBack_Click;
 
             // Adds controls to form

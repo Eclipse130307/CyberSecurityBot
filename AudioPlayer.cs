@@ -7,28 +7,30 @@ namespace CyberSecurityChatbot
 {
     public static class AudioPlayer
     {
-        // Plays greeting audio
+        // Plays welcome greeting audio
         public static void PlayGreeting()
         {
             try
             {
-                // Path to WAV file
-                string path = "greeting.wav";
+                // Gets audio stream from resources
+                UnmanagedMemoryStream stream =
+                CyberSecurityBot.Properties.Resources.Welcome_Greeting;
 
-                // Checks if file exists
-                if (File.Exists(path))
-                {
-                    // Creates sound player
-                    SoundPlayer player = new SoundPlayer(path);
+                // Creates sound player
+                SoundPlayer player =
+                    new SoundPlayer(stream);
 
-                    // Plays audio
-                    player.PlaySync();
-                }
+                // Loads audio
+                player.Load();
+
+                // Plays audio
+                player.Play();
             }
             catch (Exception ex)
             {
                 // Displays audio error
-                MessageBox.Show("Audio error: " + ex.Message);
+                MessageBox.Show(
+                    "Audio error: " + ex.Message);
             }
         }
     }
