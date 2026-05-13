@@ -11,17 +11,11 @@ namespace CyberSecurityChatbot
 
         private string username;
 
-        private string placeholderText = "Type your message...";
-
-        private bool isPlaceholderActive = true;
-
         public MainForm(string loggedInUser)
         {
             username = loggedInUser;
 
             InitializeComponent();
-
-            AddPlaceholder(null, null);
 
             Shown += MainForm_Shown;
         }
@@ -34,10 +28,6 @@ namespace CyberSecurityChatbot
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            if (isPlaceholderActive)
-            {
-                return;
-            }
 
             string userInput = txtUserInput.Text.Trim();
 
@@ -54,9 +44,6 @@ namespace CyberSecurityChatbot
 
             txtUserInput.Text = "";
 
-            AddPlaceholder(null, null);
-
-            txtUserInput.Focus();
         }
 
         private void txtUserInput_KeyDown(object sender, KeyEventArgs e)
@@ -65,26 +52,6 @@ namespace CyberSecurityChatbot
             {
                 btnSend_Click(sender, e);
                 e.SuppressKeyPress = true;
-            }
-        }
-
-        private void RemovePlaceholder(object sender, EventArgs e)
-        {
-            if (isPlaceholderActive)
-            {
-                txtUserInput.Text = "";
-                txtUserInput.ForeColor = Color.White;
-                isPlaceholderActive = false;
-            }
-        }
-
-        private void AddPlaceholder(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtUserInput.Text))
-            {
-                txtUserInput.Text = placeholderText;
-                txtUserInput.ForeColor = Color.FromArgb(170, 160, 190);
-                isPlaceholderActive = true;
             }
         }
 
